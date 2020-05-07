@@ -8,8 +8,13 @@ import Navbar from "./components/Navbar";
 
 import "./styles.scss";
 
+
 const App = () => {
   const [coinData, setCoinData] = useState([]);
+  const [storedValue, setValue]= useDarkMode(true)
+  const darkMode = ()=>{
+    setValue(!storedValue)
+  }
 
   useEffect(() => {
     axios
@@ -21,7 +26,7 @@ const App = () => {
   }, []);
   return (
     <div className="App">
-      <Navbar />
+      <Navbar darkMode={darkMode} storedValue={storedValue} />
       <Charts coinData={coinData} />
     </div>
   );
